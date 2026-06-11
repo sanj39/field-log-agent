@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Strayos Field Log Agent</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="topbar">
+        <div class="brand" aria-label="Strayos">
+          <img src="./assets/strayos-logo-cropped.png" alt="Strayos" />
+        </div>
+        <div class="sync-chip">
+          <span class="dot"></span>
+          Calendar + Drive draft
+        </div>
+      </header>
+
+      <section class="workspace" aria-label="Solutions engineer weekly check-in">
+        <div class="capture-panel">
+          <div class="brand-strip" aria-hidden="true">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+          <div class="agent-status">
+            <p class="eyebrow">Weekly field check-in</p>
+            <h1>Talk through webinars, conferences, expos, customer visits, and university visits.</h1>
+          </div>
+
+          <button class="mic-button" id="micButton" type="button" aria-label="Start voice note">
+            <span class="mic-icon" aria-hidden="true"></span>
+            <span id="micLabel">Hold to speak</span>
+          </button>
+
+          <textarea
+            id="voiceNote"
+            rows="8"
+            placeholder="Example: This week I hosted a product webinar with Apex Mining, visited Northern Ridge University, and next Tuesday I need brochures and 40 stickers for a customer visit..."
+          ></textarea>
+
+          <div class="quick-actions" aria-label="Event types">
+            <button type="button" data-type="Product Webinars">Product Webinars</button>
+            <button type="button" data-type="Conference">Conference</button>
+            <button type="button" data-type="Expo">Expo</button>
+            <button type="button" data-type="Customer Visits">Customer Visits</button>
+            <button type="button" data-type="University Visit">University Visit</button>
+          </div>
+
+          <div class="form-grid">
+            <label>
+              Event / visit name
+              <input id="eventName" type="text" placeholder="Customer, university, partner, or conference" />
+            </label>
+            <label>
+              Date
+              <input id="eventDate" type="date" />
+            </label>
+            <label>
+              Event type
+              <select id="eventType">
+                <option>Product Webinars</option>
+                <option>Conference</option>
+                <option>Expo</option>
+                <option>Customer Visits</option>
+                <option>University Visit</option>
+              </select>
+            </label>
+            <label>
+              Organisation / location
+              <input id="eventLocation" type="text" placeholder="City, customer site, campus, or venue" />
+            </label>
+          </div>
+
+          <section class="merch-box" aria-label="Merch request">
+            <div class="merch-header">
+              <p class="section-label">Merch needed?</p>
+              <label class="toggle">
+                <input id="needsMerch" type="checkbox" />
+                <span></span>
+              </label>
+            </div>
+            <div class="merch-grid">
+              <label>Stickers <input id="stickers" type="number" min="0" value="0" /></label>
+              <label>T-shirts <input id="shirts" type="number" min="0" value="0" /></label>
+              <label>Caps <input id="caps" type="number" min="0" value="0" /></label>
+            </div>
+          </section>
+
+          <div class="footer-actions">
+            <button class="secondary" id="clearButton" type="button">Clear</button>
+            <button class="primary" id="createButton" type="button">Add to calendar draft</button>
+          </div>
+        </div>
+
+        <aside class="side-panel" aria-label="Agent output">
+          <section>
+            <p class="section-label">Agent asks next</p>
+            <ul class="question-list" id="questionList"></ul>
+          </section>
+
+          <section>
+            <p class="section-label">Capture during event</p>
+            <div class="asset-checklist" id="assetChecklist"></div>
+          </section>
+
+          <section>
+            <p class="section-label">Calendar draft</p>
+            <div class="calendar-list" id="calendarList"></div>
+          </section>
+        </aside>
+      </section>
+
+      <section class="post-panel" aria-label="Post-visit asset handoff">
+        <div class="post-heading">
+          <p class="eyebrow">Post-visit asset handoff</p>
+          <h2>Collect everything from the visit and decide what should happen next.</h2>
+        </div>
+
+        <div class="post-grid">
+          <section class="asset-uploader" aria-label="Asset collector">
+            <div>
+              <p class="section-label">Upload collected assets</p>
+              <p>Photos, videos, attendee lists, decks, signed documents, recordings, scans, and notes from the visit.</p>
+            </div>
+            <label class="drop-zone" for="assetInput">
+              <input id="assetInput" type="file" multiple accept="image/*,video/*,.pdf,.ppt,.pptx,.doc,.docx,.csv,.xlsx" />
+              <span>Upload assets</span>
+              <small id="assetCount">No files selected</small>
+            </label>
+          </section>
+
+          <section class="asset-routing" aria-label="Asset routing">
+            <label>
+              Drive folder for this event
+              <input id="driveLink" type="url" placeholder="https://drive.google.com/..." />
+            </label>
+            <label>
+              What should the agent do with these assets?
+              <select id="assetAction">
+                <option>Create a clean event folder and organize files</option>
+                <option>Send to marketing for social posts</option>
+                <option>Create a customer follow-up pack</option>
+                <option>Create webinar or demo snippets</option>
+                <option>Archive only, no follow-up needed</option>
+              </select>
+            </label>
+            <label>
+              Notes for the asset handoff
+              <textarea id="assetNotes" rows="4" placeholder="Example: Use booth photos for LinkedIn, send the signed MOU draft to legal, and create a short customer recap."></textarea>
+            </label>
+          </section>
+        </div>
+      </section>
+    </main>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
